@@ -1,0 +1,106 @@
+.App {
+  position: relative;
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.Buttone1
+{
+  position: relative;
+  left: -24px;
+  right: 0px;
+  top: 10px;
+  
+}
+.Buttone2
+{
+  position: relative;
+  left: -4px;
+  right: 0px;
+  top: 10px;
+}
+.App_titolo
+{
+  position: relative;
+  top: 50px;
+}
+.input
+{
+  position: relative;
+  top:10px;
+
+}
+.input_1
+{
+  position: relative;
+  top:10px;
+
+}
+.Buttone3
+{
+  position: relative;
+  top:100px;
+}
+.App_inzio
+{
+  position: relative;
+  top: 10px;
+  
+}
+.App_fine
+{
+  position: relative;
+  top: 10px;
+}
+.barra
+{
+  position: relative;
+  top:10px;
+}
+.barra1
+{
+  position: relative;
+  top: 20px;
+  
+}
+.barra2
+{
+  position: relative;
+  top: 300px;
+}
+.iii
+{
+  position:static;
+ width: 100%;
+}
+.UserNametex
+{
+  position: relative;
+  top: 20px;
+}
+.Passwordtex
+{
+  position: relative;
+  top: 40px;
+}
+.UserName
+{
+  position: relative;
+  top: 20px;
+  right: 25px;
+}
+.Password
+{
+  position: relative;
+  top: 40px;
+  right: 16px;
+}
+.BouttonSignin
+{
+  position: relative;
+  top: 50px;
+ 
+}
+
+
