@@ -74,15 +74,17 @@
   position:static;
  width: 100%;
 }
+
 .UserNametex
 {
-  position: relative;
-  top: 20px;
+  position:relative;
+  top:-10px ;
+  
 }
 .Passwordtex
 {
   position: relative;
-  top: 40px;
+  top: 10px;
 }
 .UserName
 {
@@ -99,8 +101,47 @@
 .BouttonSignin
 {
   position: relative;
-  top: 50px;
+  top: 20px;
+  
  
+}
+.aa
+{
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 50vh;
+
+  background-color: white;
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position:relative;
+  top: 200px;
+  
+
+  
+}
+.titolo
+{
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.wwww
+{
+ color: white;
+ position:relative;
+ top: 670px;
+ left: 12px;
+ padding: 2px;
+ border: 1px solid rgba(0, 0, 0, 0);
+ background-color: black;
+ box-sizing: content-box;
+   
+  
 }
 
 

@@ -75,24 +75,21 @@ export function Manuale() {
       var res = await data.text();
       SetdataFin(res);
       SetoraFin(res);
-    }
-    
-    
-    const tt = setInterval(()=>{
-    if (focusFin == false) {
-      fetchData1();
-    }else{
 
+      setTimeout(()=>{
+        if (focusFin === false) {
+          fetchData1();
+        }else{
+    
+        }
+        },500);
     }
-    },500);
+   
+    
+    fetchData1();
      
     
-    return () => {
-      clearInterval(tt);
-      
-    }
-
-
+    
   },[focusFin]);   
   
   useEffect(() => {
@@ -102,26 +99,21 @@ export function Manuale() {
       var res = await data.text();
       SetdataInz(res);
       SetoraInz(res);
+      setTimeout(()=>{
+        if(focusIniz === false){
+           fetchData();
+        }else{
+   
+        }
+       },500);
     }
    
+    fetchData();
+
     
-
-    const tt = setInterval(()=>{
-     if(focusIniz == false){
-        fetchData();
-     }else{
-
-     }
-    },500);
       
     
-    return () => {
-      clearInterval(tt);
-    
-    }
-
-
-  },[focusIniz]);
+  },[focusIniz ]);
  
  
 
@@ -135,7 +127,7 @@ export function Manuale() {
 
 
   useEffect(()=>{
-   const oraAttuale = setInterval(() => {
+    setTimeout(() => {
       const d = new Date();
       let ore = d.getHours()*60;
       let minuti = d.getMinutes();
@@ -145,7 +137,7 @@ export function Manuale() {
     }, 1000);
      
 
-    const fine= setInterval(()=>{
+    setTimeout(()=>{
 
       const d = new Date();
 
@@ -174,7 +166,7 @@ export function Manuale() {
     },100);
 
 
-    const inzio=  setInterval(()=>{ 
+      setTimeout(()=>{ 
       const d = new Date();
       if(!regex.test(oraInz))
       {
@@ -201,7 +193,7 @@ export function Manuale() {
     },100);
 
 
-    const durant = setInterval(()=>{ 
+     setTimeout(()=>{ 
       tot = totFi - totIn;
       SetoraCors(tot); 
        ttt =100-(tot + totFi +totIn);
@@ -209,14 +201,7 @@ export function Manuale() {
     },100);
 
 
-    return () => {
-      clearInterval(fine);
-      clearInterval(inzio);
-      clearInterval(durant);
-      clearInterval(oraAttuale);
-    }
-
-
+   
   },[oraFin, oraInz]);
 
 

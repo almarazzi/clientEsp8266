@@ -1,40 +1,44 @@
-import React, {   useState } from "react";
+import React, { useCallback, useState } from "react";
 
 
-export function Signin(){
-    const [UserName, SetUserName] = useState("");
-    const [Password, SetPassword] = useState("");
-   
-    let premi =0;
-   
+export function Signin(props:{setToken : (t: boolean )=> void }) {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+  
+    const signIn = useCallback(async ()=>{
+        let res = await fetch("/Signin",{body: JSON.stringify({username, password}), method: "POST"});
+        if(res.status === 200 )
+        {
+          props.setToken(true);
+        }
+      }, [username, password, props]);
+
     return(
         <div> 
-          <form>
-            <div className="row mb-3">
-                <label className="col-sm-2 col-form-label UserName">UserName:</label>
-            <div className="col-sm-10">
-            <input type="text" value={UserName} className="form-control UserNametex" id="inputEmail3" onChange={(a)=>{SetUserName(a.target.value);}}/>
+          <form className="aa">
+            <div className="titolo" >centralina di irrigazione </div>
+            <div className=" form-floating md-3 UserNametex">
+            <input type="text" value={username} className="form-control" placeholder="." id="inputEmail3" onChange={(a)=>{setUsername(a.target.value);}}/>
+            <label form="inputEmail3">UserName</label>
             </div>
+
+         
+            <div className="form-floating md-3 Passwordtex">
+            <input type="password" value={password} className="form-control" placeholder="."  id="inputPassword3" onChange={(a)=>{setPassword(a.target.value);}}/>
+            <label form="inputPassword3">Password</label>
             </div>
-            <div className="row mb-3">
-            <label className="col-sm-2 col-form-label Password">Password:</label>
-            <div className="col-sm-10">
-            <input type="password" value={Password} className="form-control Passwordtex" id="inputPassword3" onChange={(a)=>{SetPassword(a.target.value);}}/>
-            </div>
-            </div>  
-            <button type="button" className="BouttonSignin btn btn-primary" onClick={async ()=>{
-              if(premi === 0)
-              {
-              const p ={UserName : UserName, Password : Password};
-             await fetch ("/Signin", {mode : 'cors' ,method: "POST",body : JSON.stringify(p) });
-              
-              }
-             premi++;
-            }}>Login</button>
+            
+            <button type="button" className="BouttonSignin btn btn-success" onClick={signIn}>Login</button>
             </form>
+            
+
+
         </div>
      );
-
-
-
+  
+  
+      
+        
+     
 }
+
