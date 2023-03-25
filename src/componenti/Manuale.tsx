@@ -68,14 +68,15 @@ export function Manuale() {
   }
   
   useEffect(() => {
-  
+  let ative=true;
     const fetchData1 = async () => {
       
       let data = await fetch("/RelaySwitch/GetStateDataFin", {mode: 'cors'});    
       var res = await data.text();
-      SetdataFin(res);
+      if(ative)
+      {
+        SetdataFin(res);
       SetoraFin(res);
-
       setTimeout(()=>{
         if (focusFin === false) {
           fetchData1();
@@ -83,20 +84,25 @@ export function Manuale() {
     
         }
         },500);
-    }
+      }
+    };
    
-    
     fetchData1();
-     
+    return()=>{
+      ative=false;
+    };
     
     
   },[focusFin]);   
   
   useEffect(() => {
+    let ative=true;
     const fetchData = async () => {  
       
       let data = await fetch("/RelaySwitch/GetStateDataInz", {mode: 'cors'});
       var res = await data.text();
+     if(ative)
+     {
       SetdataInz(res);
       SetoraInz(res);
       setTimeout(()=>{
@@ -106,10 +112,13 @@ export function Manuale() {
    
         }
        },500);
-    }
+      }
+    };
    
     fetchData();
-
+    return()=>{
+      ative=false;
+    };
     
       
     

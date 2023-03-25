@@ -11,7 +11,7 @@ export function Layout() {
     Data(d.toString());
  }, 1000);
  //var lingua= moment.locale("it");
-let data =moment().format(' HH:mm:ss DD/M/YY');
+let data =moment().format(' HH:mm DD/MM/Y');
  
     return (
     <Fragment>
@@ -33,6 +33,7 @@ let data =moment().format(' HH:mm:ss DD/M/YY');
                                 </ul>
                             </li>
                             
+                            
                         </ul>
                        
                 </div>
@@ -44,4 +45,3 @@ let data =moment().format(' HH:mm:ss DD/M/YY');
     </Fragment>
     );
 }
-/*<li><Link to="/Signin" className="dropdown-item">Sign in</Link></li>*/ 

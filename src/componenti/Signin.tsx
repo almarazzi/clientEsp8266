@@ -4,12 +4,15 @@ import React, { useCallback, useState } from "react";
 export function Signin(props:{setToken : (t: boolean )=> void }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [invalid, setInvalid] = useState(false);
   
     const signIn = useCallback(async ()=>{
         let res = await fetch("/Signin",{body: JSON.stringify({username, password}), method: "POST"});
-        if(res.status === 200 )
-        {
+        if(res.status === 200 ) {
           props.setToken(true);
+        }
+        else {
+          setInvalid(true);
         }
       }, [username, password, props]);
 
@@ -28,6 +31,8 @@ export function Signin(props:{setToken : (t: boolean )=> void }) {
             <label form="inputPassword3">Password</label>
             </div>
             
+            {invalid && <p className="text-danger">Non valido</p>}
+
             <button type="button" className="BouttonSignin btn btn-success" onClick={signIn}>Login</button>
             </form>
             

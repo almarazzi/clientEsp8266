@@ -2,26 +2,33 @@ import React, { useEffect, useState } from "react";
 
 
 
-export function Automatico(){
+
+
+export function Automatico (){
     const [state, stateOn ] = useState("");
-    
     useEffect(() => {
-     
+      let isactive= true;
+
         const fetchData = async () => {
           
           let data = await fetch("/RelaySwitch/GetState" , {method: 'GET'});    
           var res = await data.text();
-          stateOn(res);
-      
-          setTimeout(() =>{
-         
-            fetchData();
-          
-          },500); 
-         }
-
+        
+          if(isactive)
+          {
+            stateOn(res);
+            setTimeout(() =>{
+              fetchData();
+              
+            },500);
+          }
+        };
+        
         fetchData();
-      
+        return() => {
+          isactive=false;
+        };
+        
        
     },[]);
    
@@ -48,3 +55,5 @@ export function Automatico(){
         </div>
     );
 }   
+
+export default Automatico;
