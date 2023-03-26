@@ -20,18 +20,18 @@ export function Signin(props:{setToken : (t: boolean )=> void }) {
         <div> 
           <form className="aa">
             <div className="titolo" >centralina di irrigazione </div>
-            <div className=" form-floating md-3 UserNametex">
-            <input type="text" value={username} className="form-control" placeholder="." id="inputEmail3" onChange={(a)=>{setUsername(a.target.value);}}/>
+            <div className=" form-floating is-invalid md-3 UserNametex">
+            <input type="text" value={username} className={"form-control is-"+(invalid === true ? "invalid": "" )} placeholder="." id="inputEmail3" onChange={(a)=>{setUsername(a.target.value);}}/>
             <label form="inputEmail3">UserName</label>
             </div>
 
          
-            <div className="form-floating md-3 Passwordtex">
-            <input type="password" value={password} className="form-control" placeholder="."  id="inputPassword3" onChange={(a)=>{setPassword(a.target.value);}}/>
+            <div className="form-floating is-invalid md-3 Passwordtex">
+            <input type="password" value={password} className={"form-control is-"+(invalid === true ? "invalid": "" )} placeholder="."  id="inputPassword3" onChange={(a)=>{setPassword(a.target.value);}}/>
             <label form="inputPassword3">Password</label>
             </div>
             
-            {invalid && <p className="text-danger">Non valido</p>}
+            
 
             <button type="button" className="BouttonSignin btn btn-success" onClick={signIn}>Login</button>
             </form>
@@ -47,3 +47,4 @@ export function Signin(props:{setToken : (t: boolean )=> void }) {
      
 }
 
+/* className={"form-control is-"+(invalid === true ? "invalid": "" )}*/
