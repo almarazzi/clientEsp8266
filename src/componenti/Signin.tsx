@@ -7,7 +7,7 @@ export function Signin(props:{setToken : (t: boolean )=> void }) {
     const [invalid, setInvalid] = useState(false);
   
     const signIn = useCallback(async ()=>{
-        let res = await fetch("/Signin",{body: JSON.stringify({username, password}), method: "POST"});
+        let res = await fetch("/Account/cookie",{body: JSON.stringify({username, password}), method: "POST", headers:{'Content-type':'application/json; charl set=UTF-8'}});
         if(res.status === 200 ) {
           props.setToken(true);
         }
