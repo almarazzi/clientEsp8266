@@ -1,10 +1,10 @@
 import moment from "moment";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import 'moment/locale/it';
 
 
-export function Layout() {
+export function Layout(props: { setToken: (t: boolean) => void }) {
  const [, Data] = useState("");
  const d = new Date();
  setTimeout(() => {
@@ -12,6 +12,14 @@ export function Layout() {
  }, 1000);
  //var lingua= moment.locale("it");
 let data =moment().format(' HH:mm DD/MM/Y');
+
+const Logout = useCallback(async () => {
+    let res = await fetch("/Login/Logout", { method: "GET"});
+    if(res.status===404)
+    {
+        props.setToken(false);
+    }
+},[props]);
  
     return (
     <Fragment>
@@ -28,20 +36,22 @@ let data =moment().format(' HH:mm DD/MM/Y');
                                 Menu 
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><Link to="/Automatico" className="dropdown-item">Automatico</Link></li>
-                                <li><Link to="/Manuale" className="dropdown-item">Manuale</Link></li>
+                                <li><Link to="/Manuale" className="dropdown-item">Automatico</Link></li>
+                                <li><Link to="/Automatico" className="dropdown-item">Manuale</Link></li>
+                                <li><Link to="/CambiaPassword" className="dropdown-item">CambiaPassword</Link></li>
+                                <li><Link to="/NuovoAccount" className="dropdown-item">NuovoAccount</Link></li>
                                 </ul>
                             </li>
-                            
-                            
                         </ul>
-                       
+                        <button type="button" className=" btn btn-dark" onClick={Logout}>Logout</button>
                 </div>
-               
             </div>
-           
+            
         </nav>
         <Outlet/>
     </Fragment>
     );
 }
+
+
+

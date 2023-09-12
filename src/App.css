@@ -1,147 +1,229 @@
 .App {
-  position: relative;
- text-align: center;
- display: flex;
- flex-direction: column;
- align-items: center;
+  position: sticky;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.Buttone1
-{
+
+.Buttone1 {
   position: relative;
   left: -24px;
-  right: 0px;
-  top: 10px;
-  
+
 }
-.Buttone2
-{
+
+.Buttone2 {
   position: relative;
-  left: -4px;
-  right: 0px;
-  top: 10px;
+  left: 40px;
+  bottom: 38px;
 }
-.App_titolo
-{
+
+.App_titolo {
   position: relative;
   top: 50px;
 }
-.input
-{
-  position: relative;
-  top:10px;
 
-}
-.input_1
-{
-  position: relative;
-  top:10px;
-
-}
-.Buttone3
-{
-  position: relative;
-  top:100px;
-}
-.App_inzio
-{
+.input {
   position: relative;
   top: 10px;
-  
+
 }
-.App_fine
-{
+
+.input_1 {
+  position: relative;
+  top: 10px;
+
+}
+
+.Buttone3 {
+  position: relative;
+  top: 100px;
+}
+
+.App_inzio {
+  top: 10px;
+  position: relative;
+
+}
+
+.App_fine {
   position: relative;
   top: 10px;
 }
-.barra
-{
+
+.barra {
   position: relative;
-  top:10px;
+  top: 10px;
 }
-.barra1
-{
+
+.barra1 {
   position: relative;
   top: 20px;
-  
+
 }
-.barra2
-{
+
+.barra2 {
   position: relative;
   top: 300px;
 }
-.iii
-{
-  position:static;
- width: 100%;
+
+.iii {
+  position: static;
+  width: 100%;
 }
 
-.UserNametex
-{
-  position:relative;
-  top:-10px ;
-  
-}
-.Passwordtex
-{
+.UserNametex {
   position: relative;
-  top: 10px;
+  top: 0px;
+
 }
-.UserName
-{
+
+.Passwordtex {
+  position: relative;
+  top: 0px;
+}
+
+.UserName {
   position: relative;
   top: 20px;
   right: 25px;
 }
-.Password
-{
+
+.Password {
   position: relative;
   top: 40px;
   right: 16px;
 }
-.BouttonSignin
-{
+
+.BouttonSignin {
   position: relative;
-  top: 20px;
-  
- 
+  top: 0px;
+
+
 }
-.aa
-{
+
+.aa {
   font-family: sans-serif;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
-  height: 50vh;
+  gap: 1px;
+  height: 400px;
 
   background-color: white;
   padding: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position:relative;
-  top: 200px;
+  position: relative;
+  margin: 0 auto;
+  width: auto;
+  top: 50px;
   
 
-  
+
+
 }
-.titolo
-{
+
+.titolo {
   font-size: 25px;
   margin-bottom: 20px;
 }
-.wwww
-{
- color: white;
- position:relative;
- top: 670px;
- left: 12px;
- padding: 2px;
- border: 1px solid rgba(0, 0, 0, 0);
- background-color: black;
- box-sizing: content-box;
-   
-  
+
+.wwww {
+  color: white;
+  position: relative;
+  top: 670px;
+  left: 12px;
+  padding: 2px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-color: black;
+  box-sizing: content-box;
+
+
 }
 
+.CP {
+  position: relative;
+  font-family: sans-serif;
+  display: inline-grid;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1px;
+  height: 500px;
 
+  background-color: white;
+  padding: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  margin: 0 auto;
+  width: auto;
+  top: 50px;
+}
+
+.titolo1 {
+  position: relative;
+  font-size: 30px;
+}
+
+.UserNamet {
+  position: relative;
+
+}
+
+.Passwordt {
+  position: relative;
+
+}
+
+.aministratore {
+  position: sticky;
+  right: 2000px;
+}
+.p{
+  position: relative;
+  width: 35px;
+  height:35px;
+  top: 30px;
+  border-radius: 25px 25px;
+  border: 1px solid #bbb;
+  background-color: white;
+  color: black;
+  font-size: 130%;
+}
+.p:hover{
+  background-color: #bbb;
+}
+hr{
+  width: 100%;
+  position: relative;
+  top: 30px;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  border-width: 2px;
+  border-color: black;
+}
+hr:not([size]){
+  height: 4px;
+}
+
+.Automatico{
+  display: flex;
+  width: 99%;
+}
+.Manuale{
+  display: flex;
+  width: 99%;
+}
+
+.aa1{
+  position: relative;
+  bottom: 20px;
+}
