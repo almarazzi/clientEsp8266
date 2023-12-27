@@ -21,7 +21,6 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
 
   }, []);
   const signIn = useCallback(async () => {
-
     let res = await fetch("/Login/cookie", { body: JSON.stringify({ username, password }), method: "POST", headers: { 'Content-type': 'application/json; charl set=UTF-8' } });
     if (res.status === 200) {
       props.setToken(true);
