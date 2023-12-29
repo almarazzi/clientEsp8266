@@ -2,7 +2,12 @@ import moment from "moment";
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import 'moment/locale/it';
+import { Interface } from "readline";
 
+interface LoggedUser{
+    readonly username: string;
+    readonly isAdmin: boolean;
+}
 
 export function Layout(props: { setToken: (t: boolean) => void }) {
  const [, Data] = useState("");
@@ -23,27 +28,20 @@ const Logout = useCallback(async () => {
     }
 },[props]);
 
+
 useEffect(() => {
         
     const fetchData = async () => {
         
-        let data = await fetch("/Login/VerficaGrado" , {method: 'GET'});    
-        var res = await data.json();
-        setGrado(res);
-    }; 
-    fetchData();  
-},[grado]);
- 
-useEffect(() => {
-        
-    const fetchData = async () => {
-        
-        let data = await fetch("/Login/NomeUtente" , {method: 'GET'});    
-        var res = await data.text();
-        setNomeUtente(res);
-    }; 
-    fetchData();  
-},[nomeUtente]);
+        let data = await fetch("/Login/GetLoggedUser" , {method: 'GET'});
+        var res = await data.json() as LoggedUser;
+        setGrado(res.isAdmin);
+        setNomeUtente(res.username);
+    };
+    fetchData();
+},[grado, nomeUtente]);
+
+
     return (
     <Fragment>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark iii ">

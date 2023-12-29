@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, BrowserRouter, HashRouter, redirect } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, HashRouter } from 'react-router-dom';
 import { Layout } from './componenti/Layout'; 
 import { Automatico } from './componenti/Automatico';
 import { Manuale } from './componenti/Manuale'; 
@@ -12,6 +12,7 @@ import { NuovoAccount } from './componenti/NuovoAccount';
 function App() {
   const [token, setToken] = useState(false);
 
+  
   return (
       <div className="App">
           <HashRouter>
