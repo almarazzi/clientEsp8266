@@ -227,3 +227,35 @@ hr:not([size]){
   position: relative;
   bottom: 20px;
 }
+.tabella{
+border: 2px solid;
+padding: 10px;
+text-align: -webkit-center;
+}
+.prova2{
+  border: 2px solid;
+  padding: 10px;
+  text-align: center;
+}
+.Button{
+  width: 200px;
+}
+.prova{
+  position: relative;
+  top: 20px;
+  }
+  .isOnline {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border: 1px solid white;
+    border-radius: 100%;
+  }
+  .isOffline {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border: 1px solid white;
+    text-align: center;
+    border-radius: 100%;
+  }

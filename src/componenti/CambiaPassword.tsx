@@ -10,8 +10,6 @@ export function CambiaPassword() {
     const [pp, setPp] = useState(false);
     const [statobottone, setStatobottone] = useState(false);
 
-    var regex = /^(?=.*[a-zA-Z0-9])(?=.*[A-Z])(?=.*[a-zA-Z0-9])(?=.*[a-zA-Z0-9])(?=.*[@#$%^&+=()"/!.\-_*])([a-zA-Z0-9@#$%^&+=()!"/*.\-_]){8,}$/;
-
     useEffect(() => {
         if(invalid===true)
         {
@@ -26,12 +24,12 @@ export function CambiaPassword() {
                     } 
             },500);
         }
-    }, [PasswordNuv, PasswordRib]);
+    }, [PasswordNuv, PasswordRib,invalid]);
 
     const Cambio = useCallback(async () => {
 
         if (pp === true) {
-            let res = await fetch("/Login/cambiaPassword", { body: JSON.stringify({ Username, PasswordAtt, PasswordNuv }), method: "POST", headers: { 'Content-type': 'application/json; charl set=UTF-8' } });
+            let res = await fetch("/Login/cambiaPassword", { body: JSON.stringify({ Username, PasswordAtt, PasswordNuv }), method: "PUT", headers: { 'Content-type': 'application/json; charl set=UTF-8' } });
             if (res.status === 200) {
                 setStatobottone(true);
             } else {
@@ -39,7 +37,7 @@ export function CambiaPassword() {
             }
         }
 
-    }, [pp]);
+    }, [pp, Username, PasswordAtt,PasswordNuv]);
 
     const invio = (event: { key: any; }) => {
         if (event.key === "Enter") {

@@ -1,5 +1,4 @@
-import path from "path";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 
 
@@ -20,14 +19,10 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
   const [focusIniz, setFocusIniz] = useState(false);
   const [focusFin, setFocustFin] = useState(false);
   const days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-    const d = new Date();
-    //setGiorno(d.getDate()-d.getDay()+props.dayOfWeek);
-    
-
+  
 
   const handleSubmit = async (dataInz : string) => {
     const d = new Date();
-   // d.setDate(d.getDate()-d.getDay()+props.dayOfWeek);
     if(!regex.test(dataInz))
     {
       return;
@@ -43,7 +38,7 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
     d.setHours(ora, minuti, secondi);
     let  time = (ora*3600+minuti*60+secondi);
     const x = {xxxx : dataInz, timeInz: time,day:props.dayOfWeek };
-    await fetch("api/RelaySwitch/SetDataInz", { mode: 'cors' ,method:"POST", body: JSON.stringify(x)});
+    await fetch("api/RelaySwitch/SetDataInz", { method:"PUT", body: JSON.stringify(x)});
     SetoraInz(dataInz);
     console.log("mils:"+d);
   } 
@@ -51,7 +46,6 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
 
   const handleSubmit1 = async (dataFin : string) => {
     const d = new Date();
-    //d.setDate(d.getDate()-d.getDay()+props.dayOfWeek);
     if(!regex.test(dataFin))
     {
       return;
@@ -67,7 +61,7 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
     d.setHours(ora, minuti, secondi);
     let time =  (ora*3600+minuti*60+secondi);
     const x = {xxxx : dataFin, timeFin : time,day: props.dayOfWeek};
-    await fetch("api/RelaySwitch/SetDataFin", { mode: 'cors' ,method:"POST", body: JSON.stringify(x)});    
+    await fetch("api/RelaySwitch/SetDataFin", {method:"PUT", body: JSON.stringify(x)});    
     SetoraFin(dataFin);
     console.log("fin:" +d.getDate());
   }
@@ -96,7 +90,7 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
     SetdataFin(fine1);
 
 
-  },[props.array]);
+  },[props.array,props.dayOfWeek]);
 
   let totIn=0;  
   let totFi=0;

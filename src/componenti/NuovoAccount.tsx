@@ -7,14 +7,14 @@ export function NuovoAccount() {
     const [am, setAm] = useState(false);
 
     const aggiunta = useCallback(async () => {
-        if(username!= "" && password !="")
+        if(username!== "" && password !=="")
         {
             let res = await fetch("/Login/AggiuntaAccount", { body: JSON.stringify({ username, password, am }), method: "POST", headers: { 'Content-type': 'application/json; charl set=UTF-8' } });
             if (res.status === 200) {
                 setIstrue(true);
             }
         }
-    }, [username, password, istrue, am]);
+    }, [username, password, am]);
 
 
     const invio = (event: { key: any; }) => {

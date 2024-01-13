@@ -26,13 +26,10 @@ const [A,setA]= useState(false);
     console.log("prima: "+A);
 
     const p = ()=>{setA(!A)};
-  
     const p1 = useCallback(async () => {
-        const fetchData = async () => {
         const inv={stateProgrammAuto: !A};
-        await fetch("api/RelaySwitch/stateProgrammAuto",{method:"POST",body: JSON.stringify(inv)})
-        };
-        fetchData();
+        await fetch("api/RelaySwitch/stateProgrammAuto",{method:"PUT",body: JSON.stringify(inv)})
+
     },[A]);
     useEffect(() => {
         let isactive= true;
@@ -41,15 +38,7 @@ const [A,setA]= useState(false);
         let res = await data.json();
         if(isactive)
         {
-            if(res===0)
-            {
-            setA(false);
-            console.log("ok");
-            }
-            if(res===1)
-            {
-            setA(true);
-            }
+            setA(res.valoreBool);
             setTimeout(() =>{
                 fetchData1();
             },500);
@@ -63,10 +52,6 @@ const [A,setA]= useState(false);
     
     console.log("dopo: "+A);
 
-   
-    
-
-   // console.log(r);
     return <Fragment>
         
         <div className="Automatico">

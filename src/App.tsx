@@ -1,12 +1,13 @@
 import './App.css';
-import { Routes, Route, BrowserRouter, HashRouter } from 'react-router-dom';
+import { Routes, Route,  HashRouter } from 'react-router-dom';
 import { Layout } from './componenti/Layout'; 
 import { Automatico } from './componenti/Automatico';
 import { Manuale } from './componenti/Manuale'; 
 import { Signin } from './componenti/Signin';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { CambiaPassword } from './componenti/CambiaPassword';
 import { NuovoAccount } from './componenti/NuovoAccount';
+import { ControlloUtenti } from './componenti/ControlloUtenti';
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
                   <Route path="/Automatico" element={<Automatico />} />
                   <Route path="/CambiaPassword" element={<CambiaPassword/>} />    
                   <Route path="/Manuale" element={<Manuale />} />
-                  <Route path="/NuovoAccount" element={<NuovoAccount />} />          
+                  <Route path="/NuovoAccount" element={<NuovoAccount />} />
+                  <Route path="/ControlloUtenti" element={<ControlloUtenti />} />          
                 </Route>
               </Routes >
             </HashRouter>    
