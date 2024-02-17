@@ -80,8 +80,7 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
       }
     let ora = Math.floor(sec/3600);
     let minuti=Math.floor((sec%3600)/60);
-    let secondi =Math.floor((sec%3600)%60);
-    //let tot = 
+    let secondi =Math.floor((sec%3600)%60); 
     return ora+":"+minuti+":"+secondi
     }
     SetoraInz(inzio1);
@@ -163,9 +162,7 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
       totIn = (tot/1440)*100;
       SetoraTotInz(totIn);
     },100);
-
-
-setTimeout(()=>{ 
+    setTimeout(()=>{ 
       tot = totFi - totIn;
       SetoraCors(tot); 
       ttt =100-(tot + totFi +totIn);
@@ -224,5 +221,3 @@ setTimeout(()=>{
     );
   
 }
-
-

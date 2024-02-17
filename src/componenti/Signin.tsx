@@ -53,5 +53,3 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
   );
 
 }
-
-/* className={"form-control is-"+(invalid === true ? "invalid": "" )}*/

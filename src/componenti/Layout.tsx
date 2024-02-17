@@ -3,14 +3,14 @@ import { Fragment, useCallback, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import 'moment/locale/it';
 
-interface LoggedUser{
+interface GetRuolo{
     readonly username: string;
-    readonly isAdmin: boolean;
+    readonly ruolo: string;
 }
 
 export function Layout(props: { setToken: (t: boolean) => void }) {
  const [, Data] = useState("");
- const [grado, setGrado] = useState(false);
+ const [grado, setGrado] = useState("");
  const [nomeUtente, setNomeUtente] = useState("");
  const d = new Date();
  setTimeout(() => {
@@ -24,7 +24,9 @@ const Logout = useCallback(async () => {
     if(tt.status===200)
     {
     props.setToken(false);
+    window.location.href="/";
     }
+    
 },[props]);
 
 useEffect(() => {
@@ -52,11 +54,11 @@ useEffect(() => {
     let isActive = true;
     const fetchData = async () => {
         
-        let data = await fetch("/Login/GetLoggedUser" , {method: 'GET'});
+        let data = await fetch("/Login/GetRuolo" , {method: 'GET'});
         if(!isActive) return;
-        var res = await data.json() as LoggedUser;
+        var res = await data.json() as GetRuolo;
         if(!isActive) return;
-        setGrado(res.isAdmin);
+        setGrado(res.ruolo);
         setNomeUtente(res.username);
     };
     fetchData();
@@ -79,11 +81,11 @@ useEffect(() => {
                                 Menu 
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><Link to="/Manuale" className="dropdown-item">Automatico</Link></li>
-                                <li><Link to="/Automatico" className="dropdown-item">Manuale</Link></li>
-                                <li><Link to="/CambiaPassword" className="dropdown-item">CambiaPassword</Link></li>
-                                <li><Link to={"/"+(grado===true ? "NuovoAccount": null)} className={""+(grado===true ? "dropdown-item": null)}>{(grado===true ? "NuovoAccount": null)}</Link></li>
-                                <li><Link to={"/"+(grado===true ? "ControlloUtenti": null)} className={""+(grado===true ? "dropdown-item": null)}>{(grado===true ? "ControlloUtenti": null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "Manuale":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "Automatico":null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "Automatico":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "Manuale":null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ?"CambiaPassword":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "CambiaPassword":null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin"||grado==="root" ? "NuovoAccount": null)} className={""+(grado==="Admin"||grado==="root" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="root" ? "NuovoAccount": null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin" ? "ControlloUtenti": null)} className={""+(grado==="Admin" ? "dropdown-item": null)}>{(grado==="Admin" ? "ControlloUtenti": null)}</Link></li>
                                 </ul>
                             </li>
                         </ul>
