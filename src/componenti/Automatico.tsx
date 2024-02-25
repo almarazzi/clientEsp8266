@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback, Fragment } from "react";
+import { useEffect, useState,useCallback, Fragment } from "react";
 
 
 
@@ -55,18 +55,14 @@ export function Automatico (){
 
         const inv={stateProgrammManu: !M};
         await fetch("api/RelaySwitch/stateProgrammManu",{method:"PUT",body: JSON.stringify(inv)});
-
+        setM(!M);
     },[M]);
   
-    const p = ()=>{
-      setM(!M);
-    };
-
 
     return(
       <Fragment>
                     <div className=" Manuale">
-                        <input className="form-check-input " type="checkbox"  checked={M} onChange={p} onClick={y} id="invalidCheck" required />
+                        <input className="form-check-input " type="checkbox"  checked={M} onChange={y} id="invalidCheck" required />
                         <label className="form-check-label">Manuale</label>
                     </div>
 

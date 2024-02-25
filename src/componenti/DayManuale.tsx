@@ -15,9 +15,8 @@ export function DayManuale(props: {dayOfWeek: number,array: number[]}) {
   const [oraTotInz,SetoraTotInz] = useState(0);
   const [oraCors,SetoraCors] = useState(0);
   const [tempoCon,SeTtempoCon] = useState(0);
-  const [Giorno,setGiorno] = useState(0);
-  const [focusIniz, setFocusIniz] = useState(false);
-  const [focusFin, setFocustFin] = useState(false);
+  const [, setFocusIniz] = useState(false);
+  const [, setFocustFin] = useState(false);
   const days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
   
 

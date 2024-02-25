@@ -25,11 +25,11 @@ const [A,setA]= useState(false);
     },[]);
     console.log("prima: "+A);
 
-    const p = ()=>{setA(!A)};
+
     const p1 = useCallback(async () => {
         const inv={stateProgrammAuto: !A};
         await fetch("api/RelaySwitch/stateProgrammAuto",{method:"PUT",body: JSON.stringify(inv)})
-
+        setA(!A);
     },[A]);
     useEffect(() => {
         let isactive= true;
@@ -55,7 +55,7 @@ const [A,setA]= useState(false);
     return <Fragment>
         
         <div className="Automatico">
-            <input className="form-check-input " type="checkbox" checked={A}  onChange={p}  onClick={p1} id="invalidCheck" required />
+            <input className="form-check-input " type="checkbox" checked={A}  onChange={p1}   id="invalidCheck" required />
             <label className="form-check-label">Automatico</label>
         </div>
         {
