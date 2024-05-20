@@ -10,7 +10,7 @@ interface GetRuolo{
 
 export function Layout(props: { setToken: (t: boolean) => void }) {
  const [, Data] = useState("");
- const [grado, setGrado] = useState("");
+ const [grado, setGrado] = useState("Admn");
  const [nomeUtente, setNomeUtente] = useState("");
  const d = new Date();
  setTimeout(() => {
@@ -63,7 +63,7 @@ useEffect(() => {
     };
     fetchData();
     return ()=>{isActive=false;}  //cleanup when component unmounts
-},[]);
+},[grado]);
 
 
     return (

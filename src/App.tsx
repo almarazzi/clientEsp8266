@@ -25,11 +25,11 @@ function App() {
         var res = await data.json() as GetRuolo;
         if(!isActive) return;
         setGrado(res.ruolo);
+        console.log(res.ruolo);
     };
     fetchData();
     return ()=>{isActive=false;}  //cleanup when component unmounts
-},[]);
-  
+},[token]);
   return (
       <div className="App">
           <HashRouter>
@@ -45,7 +45,5 @@ function App() {
             </HashRouter>    
       </div> 
   );
-  
-  
 }
 export default App;

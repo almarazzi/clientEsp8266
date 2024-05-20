@@ -5,15 +5,15 @@ import { useEffect, useState,useCallback, Fragment } from "react";
 
 
 export function Automatico (){
-    const [state, stateOn ] = useState("");
+    const [state, stateOn ] = useState(false);
     const [M,setM]= useState(false);
     useEffect(() => {
       let isactive= true;
 
         const fetchData = async () => {
           
-          let data = await fetch("api/RelaySwitch/GetState" , {method: 'GET'});    
-          var res = await data.text();
+          let data = await fetch("/api/RelaySwitch/GetState" , {method: 'GET',headers: { 'Content-type': 'application/json; charl set=UTF-8' }});    
+          var res = await data.json();
         
           if(isactive)
           {
@@ -25,7 +25,7 @@ export function Automatico (){
           }
         };
         
-        fetchData();
+        fetchData(); 
         return() => {
           isactive=false;
         };
@@ -35,11 +35,11 @@ export function Automatico (){
     useEffect(() => {
       let isactive= true;
         const fetchData = async () => {
-          let data = await fetch("api/RelaySwitch/GetProgrammManu" , {method: 'GET'});    
+          let data = await fetch("/api/RelaySwitch/GetProgrammManu" , {method: 'GET',headers: { 'Content-type': 'application/json; charl set=UTF-8' }});    
           var res = await data.json();
           if(isactive)
           {
-            setM(res.valoreBool);
+            setM(res);
             setTimeout(() =>{
               fetchData();
               
@@ -54,7 +54,7 @@ export function Automatico (){
     const y= useCallback (async () => {
 
         const inv={stateProgrammManu: !M};
-        await fetch("api/RelaySwitch/stateProgrammManu",{method:"PUT",body: JSON.stringify(inv)});
+        await fetch("/api/RelaySwitch/stateProgrammManu",{method:"PUT",body: JSON.stringify(inv) ,headers: { 'Content-type': 'application/json; charl set=UTF-8' }});
         setM(!M);
     },[M]);
   
@@ -66,15 +66,15 @@ export function Automatico (){
                         <label className="form-check-label">Manuale</label>
                     </div>
 
-            <button type="button" className={ "Buttone1  btn btn-" + (state === "1" ?  "primary" : "secondary") }  onClick={async ()=>{ 
-              let data = await fetch("api/RelaySwitch/SetState/" + 1, { method: "PUT" });
-              var res = await (data.text());
+            <button type="button" className={ "Buttone1  btn btn-" + (state === true ?  "primary" : "secondary") }  onClick={async ()=>{ 
+              let data = await fetch("/api/RelaySwitch/SetState/" + true, { method: "PUT" ,headers: { 'Content-type': 'application/json; charl set=UTF-8' }});
+              var res = await (data.json());
               stateOn(res);
             }}> ON</button>
 
-            <button type="button" className={ "Buttone2 btn btn-" + (state === "0" ?  "primary" : "secondary") }  onClick={async ()=>{ 
-              let data = await fetch("api/RelaySwitch/SetState/" + 0, { method: "PUT"});
-              var res = await (data.text());
+            <button type="button" className={ "Buttone2 btn btn-" + (state === false ?  "primary" : "secondary") }  onClick={async ()=>{ 
+              let data = await fetch("/api/RelaySwitch/SetState/" + false, { method: "PUT",headers: { 'Content-type': 'application/json; charl set=UTF-8' }});
+              var res = await (data.json());
               stateOn(res);
             }}> OFF</button>
         </Fragment>
