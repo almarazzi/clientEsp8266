@@ -9,6 +9,7 @@ interface Oragiorno{
 export function Manuale(){  
 const [r, setr] = useState([] as Oragiorno[]);
 const [A,setA]= useState(false);
+const a = new Date();
     useEffect(() => {
             let isactive= true;
             const fetchData1 = async () => {
@@ -60,9 +61,12 @@ const [A,setA]= useState(false);
             <input className="form-check-input " type="checkbox" checked={A}  onChange={p1}   id="invalidCheck" required />
             <label className="form-check-label">Automatico</label>
         </div>
+        
         {
         [...Array(7)].map((_,i) => 
-            <DayManuale key={i}  dayOfWeek={i}  array={r}/>
+            <div className={""+(a.getDay()!==i ?"opacity-25":null)} >
+            <DayManuale key={i}  dayOfWeek={i}  array={r} />
+            </div>
             )}
     
     </Fragment>    

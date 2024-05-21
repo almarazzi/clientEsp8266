@@ -132,10 +132,10 @@ useEffect(()=>{
       ttt =100-(tot + totFi +totIn);
       SetoraTotFin(totFi + ttt);
     },100);
-
   },[oraFin, oraInz]);
+
   return( 
-        <div className="aa1"> 
+        <div className={"aa1"}> 
           <h2>{days[props.dayOfWeek]}</h2>
           <form className="input-group mb-3">
             <span className="input-group-text App_inzio" id="inputGroup-sizing-default">inzio</span>

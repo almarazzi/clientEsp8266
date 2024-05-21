@@ -10,7 +10,7 @@ interface GetRuolo{
 
 export function Layout(props: { setToken: (t: boolean) => void }) {
  const [, Data] = useState("");
- const [grado, setGrado] = useState("Admn");
+ const [grado, setGrado] = useState("Basic");
  const [nomeUtente, setNomeUtente] = useState("");
  const d = new Date();
  setTimeout(() => {
