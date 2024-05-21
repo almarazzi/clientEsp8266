@@ -14,8 +14,8 @@ interface GetRuolo{
   readonly username: string;
 }
 function App() {
-  const [token, setToken] = useState(true);
-  const [grado, setGrado] = useState("Basic");
+  const [token, setToken] = useState(false);
+  const [grado, setGrado] = useState("");
   useEffect(() => {
     let isActive = true;
     const fetchData = async () => {
