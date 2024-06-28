@@ -42,7 +42,7 @@ useEffect(() => {
             }
             setTimeout(()=>{
                 Autenticazione();
-            },10000);
+            },5000);
         }
     };
     Autenticazione();
@@ -70,7 +70,7 @@ useEffect(() => {
     <Fragment>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark iii ">
             <div className="container-fluid">
-                <a   href="/#" className="navbar-brand"> {data} Irrigazione  Benvenuto {nomeUtente}</a>
+                <a href="/#" className="navbar-brand"> {data} Irrigazione  Benvenuto {nomeUtente}</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
@@ -86,6 +86,7 @@ useEffect(() => {
                                 <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ?"CambiaPassword":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "CambiaPassword":null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin"||grado==="root" ? "NuovoAccount": null)} className={""+(grado==="Admin"||grado==="root" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="root" ? "NuovoAccount": null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin" ? "ControlloUtenti": null)} className={""+(grado==="Admin" ? "dropdown-item": null)}>{(grado==="Admin" ? "ControlloUtenti": null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "ListaEsp": null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "ListaEsp": null)}</Link></li>
                                 </ul>
                             </li>
                         </ul>

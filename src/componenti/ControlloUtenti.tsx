@@ -12,6 +12,7 @@ interface User{
 
 export function ControlloUtenti() {
     const [users, setUsers] = useState([] as User[]);
+    
     useEffect(() => {        
         let isActive = true;
         const fetchData = async () => {            
@@ -20,7 +21,7 @@ export function ControlloUtenti() {
             var res = await data.json() as User[];
             if(!isActive) return;
             setUsers(res);
-            if(isActive===true) setTimeout(()=>{fetchData();},5000);
+            if(isActive===true) setTimeout(()=>{fetchData();},500);
         };
         fetchData();
         return ()=>{isActive=false;}  //cleanup when component unmounts

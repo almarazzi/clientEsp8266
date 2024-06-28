@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { CambiaPassword } from './componenti/CambiaPassword';
 import { NuovoAccount } from './componenti/NuovoAccount';
 import { ControlloUtenti } from './componenti/ControlloUtenti';
+import { ProgrammaEsp } from './componenti/ProgrammaEsp';
 
 interface GetRuolo{
   readonly ruolo: string;
@@ -39,7 +40,8 @@ function App() {
                   <Route path="/CambiaPassword" element={(grado==="Admin" || grado==="Basic"?<CambiaPassword/>:null)} />    
                   <Route path="/Manuale" element={(grado==="Admin" || grado==="Basic"?<Manuale />:null)} />
                   <Route path="/NuovoAccount" element={(grado==="Admin" || grado==="root"?<NuovoAccount /> :null)} />
-                  <Route path="/ControlloUtenti" element={(grado==="Admin"?<ControlloUtenti />:null)} />          
+                  <Route path="/ControlloUtenti" element={(grado==="Admin"?<ControlloUtenti />:null)} />
+                  <Route path="/ListaEsp" element={(grado==="Admin" || grado==="Basic"?<ProgrammaEsp />:null)} />              
                 </Route>
               </Routes >
             </HashRouter>    
