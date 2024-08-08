@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, useCallback } from "react";
+import { Fragment, useEffect, useState,  } from "react";
 import { DayManuale } from "./DayManuale";
 
 interface Oragiorno{
@@ -6,68 +6,47 @@ interface Oragiorno{
     readonly oraFine: string;
     readonly day: number;
 }
-export function Manuale(){  
+interface key{
+    key: string;
+    value:Oragiorno[];
+}
+export function Manuale(props:{mac:string}){  
 const [r, setr] = useState([] as Oragiorno[]);
-const [A,setA]= useState(false);
+//const [pp, setpp] = useState("");
+
 const a = new Date();
-    useEffect(() => {
-            let isactive= true;
-            const fetchData1 = async () => {
-            let data = await fetch("/api/RelaySwitch/GetWeekProgram" ,{method:'GET' ,headers: { 'Content-type': 'application/json; charl set=UTF-8' }});    
-            const res = await data.json() as Oragiorno[];
-            if(isactive)
+useEffect(() => {
+    let isactive= true;
+    const fetchData1 = async () => {
+        let data = await fetch("/api/RelaySwitch/GetWeekProgram" ,{method:'GET',headers: { 'Content-type': 'application/json; charl set=UTF-8' }});    
+        var res = await data.json() as key[];
+        res.map((u,_)=>{
+            if(u.key===props.mac)
             {
-                setr(res);
-                setTimeout(() =>{
-                    fetchData1();
-                },500);
+                setr(u.value);
+                //setpp(u.value);
+                r.forEach(u=>console.log(u.oraFine));
             }
-            };
-            fetchData1();
-            return() => {
-            isactive=false;
-            };
-    },[]);
-
-
-    const p1 = useCallback(async () => {
-        const inv={stateProgrammAuto: !A};
-        await fetch("/api/RelaySwitch/stateProgrammAuto",{method:"PUT",body: JSON.stringify(inv),headers: { 'Content-type': 'application/json; charl set=UTF-8' }})
-        setA(!A);
-    },[A]);
-    useEffect(() => {
-        let isactive= true;
-        const fetchData1 = async () => {
-        let data = await fetch("/api/RelaySwitch/GetProgrammAuto" ,{method:'GET' ,headers: { 'Content-type': 'application/json; charl set=UTF-8' }});    
-        let res = await data.json();
+        })
         if(isactive)
         {
-            setA(res);
             setTimeout(() =>{
                 fetchData1();
             },500);
         }
-        };
-        fetchData1();
-        return() => {
+    };
+    fetchData1();
+    return() => {
         isactive=false;
-        };
-    },[]);
-    
+    };
+},[]);
 
     return <Fragment>
-        
-        <div className="Automatico">
-            <input className="form-check-input " type="checkbox" checked={A}  onChange={p1}   id="invalidCheck" required />
-            <label className="form-check-label">Automatico</label>
-        </div>
-        
         {
         [...Array(7)].map((_,i) => 
             <div className={""+(a.getDay()!==i ?"opacity-25":null)} >
-            <DayManuale key={i}  dayOfWeek={i}  array={r} />
+            <DayManuale key={i}  dayOfWeek={i}  array={r} mac={props.mac} />
             </div>
             )}
-    
     </Fragment>    
 }

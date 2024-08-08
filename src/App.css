@@ -9,13 +9,15 @@
 .Buttone1 {
   position: relative;
   left: -24px;
+  top: 20px;
 
 }
 
 .Buttone2 {
   position: relative;
   left: 40px;
-  bottom: 38px;
+  bottom: 18px;
+
 }
 
 .App_titolo {
@@ -225,7 +227,6 @@ hr:not([size]){
 
 .aa1{
   position: relative;
-  bottom: 20px;
 }
 .tabella{
 border: 2px solid;
@@ -258,4 +259,81 @@ text-align: -webkit-center;
     border: 1px solid white;
     text-align: center;
     border-radius: 100%;
+  }
+  .input_ESP
+  {
+    position: relative;
+    top: -60px;
+  }
+  .ccccc
+  {
+  font-family: sans-serif;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1px;
+  height: 200px;
+
+  background-color: white;
+  padding: 4rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-left: 1px;
+  margin-right: 1px;
+  top: 10px;
+  right: 400px;
+  }
+  .input_check
+  {
+    position: relative;
+    top: -50px;
+  }
+  .pppp
+  {
+    position: relative;
+    top: -49px;
+    right: 40px;
+  }
+  .ip
+  {
+    position: relative;
+    top: -120px;
+    right: 46px;
+  }
+  .mac
+  {
+    position: relative;
+    top: -115px;
+    right: 18px;
+  }
+  .casellaAuto
+  {
+    position: relative;
+    right: 55px;
+    top: -120px;
+  }
+  .casellaManu
+  {
+    position: relative;
+    position: relative;
+    top: -100px;
+    left: 260px;
+  }
+  .bottoneManu
+  {
+    position: relative;
+    left: 157px;
+    width: 100px;
+    top: -14px;
+  }
+  .bottoneAuto
+  {
+    position: relative;
+    right: 30px;
+    width: 100px;
+    top: 25px;
   }

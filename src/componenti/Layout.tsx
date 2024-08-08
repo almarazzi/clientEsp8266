@@ -32,7 +32,7 @@ const Logout = useCallback(async () => {
 useEffect(() => {
     let isactive=true;
     const Autenticazione = async () => {
-        let data = await fetch("/Login/Autenticazione", { method: "GET"  });
+        let data = await fetch("/Login/Autenticazione", { method: "GET" , headers: {'Content-type': 'application/json; charl set=UTF-8'} });
         //let res = await data.json();
         if(isactive)
         {
@@ -81,12 +81,10 @@ useEffect(() => {
                                 Menu 
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "Manuale":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "Automatico":null)}</Link></li>
-                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "Automatico":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "Manuale":null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "ESP":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "ESP":null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ?"CambiaPassword":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "CambiaPassword":null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin"||grado==="root" ? "NuovoAccount": null)} className={""+(grado==="Admin"||grado==="root" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="root" ? "NuovoAccount": null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin" ? "ControlloUtenti": null)} className={""+(grado==="Admin" ? "dropdown-item": null)}>{(grado==="Admin" ? "ControlloUtenti": null)}</Link></li>
-                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "ListaEsp": null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "ListaEsp": null)}</Link></li>
                                 </ul>
                             </li>
                         </ul>
@@ -100,5 +98,7 @@ useEffect(() => {
     );
 }
 
-
+// <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "Manuale":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "Automatico":null)}</Link></li>
+//<li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "Automatico":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "Manuale":null)}</Link></li>
+//<li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "ListaEsp": null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "ListaEsp": null)}</Link></li>
 

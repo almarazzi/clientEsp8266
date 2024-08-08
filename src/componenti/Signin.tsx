@@ -1,4 +1,4 @@
-import  { useCallback, useEffect, useState } from "react";
+import  { useCallback,useEffect, useState } from "react";
 
 export function Signin(props: { setToken: (t: boolean) => void }) {
   const [username, setUsername] = useState("");
@@ -7,24 +7,30 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
 
   useEffect(() => {
     const Autenticazione = async () => {
-      let data = await fetch("/Login/Autenticazione", { method: "GET"  });
-      //let res = await data.json();
-      if (data.status === 200) {
+      let data = await fetch("/Login/Autenticazione", { method: "GET", headers: {'Content-type': 'application/json; charl set=UTF-8'}});
+      console.log(data.status);
+      if (data.status === 200)
+      {
         props.setToken(true);
+      }else
+      {
+        props.setToken(false);
       }
     };
     Autenticazione();
-  }, [props]);
+  }, [props.setToken]);
   
   const signIn = useCallback(async () => {
     let res = await fetch("/Login/cookie", { body: JSON.stringify({ username, password}), method: "POST", headers: {'Content-type': 'application/json; charl set=UTF-8'}});
-    if (res.status === 200) {
+    if (res.status === 200)
+    {
       props.setToken(true);
-    }
-    else {
+     // setLoading(false);
+    }else
+    {
       setInvalid(true);
     }
-  }, [username, password, props]);
+  }, [username, password, invalid,props.setToken]);
 
   const invio = (event: { key: any; }) => {
     if (event.key === "Enter") {
@@ -36,20 +42,26 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
     <div className="row container">
       <form className="aa">
         <div className="titolo fw-bolder" >centralina di irrigazione </div>
-        <div className=" form-floating is-invalid md-3 UserNametex">
-          <input type="text" value={username} className={"form-control is-" + (invalid === true ? "invalid" : "")} placeholder=" " id="inputEmail3" onChange={(a) => { setUsername(a.target.value); }} />
-          <label form="inputEmail3">UserName</label>
+        <div className=" form-floating  md-3 UserNametex is-invalid " >
+          <input type="text" value={username} className={" form-control is-" + (invalid === true ? "invalid" : "")}  placeholder=" " id="inputNomeUtente" onChange={(a) => { setUsername(a.target.value); }} />
+          <label form="inputNomeUtente">UserName</label>
         </div>
 
         <div className="form-floating is-invalid md-3 Passwordtex">
-          <input type="password" value={password} className={"form-control is-" + (invalid === true ? "invalid" : "")} placeholder=" " id="inputPassword3" onChange={(a) => { setPassword(a.target.value) }} onKeyDown={invio} />
-          <label form="inputPassword3">Password</label>
+          <input type="password" value={password} className={"form-control is-" + (invalid === true ? "invalid" : "")} placeholder=" " id="inputPassword" onChange={(a) => { setPassword(a.target.value) }} onKeyDown={invio} />
+          <label form="inputPassword">Password</label>
         </div>
 
-        <button type="button" className="BouttonSignin btn btn-success" onClick={signIn}>Login</button>
-      </form>
+        <button type="button" className=" btn btn-success" onClick={signIn}>Login</button>
+        
+        
+      </form> 
 
     </div>
   );
 
 }
+/*<button class="btn btn-primary" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span class="visually-hidden" role="status">Loading...</span>
+</button>*/

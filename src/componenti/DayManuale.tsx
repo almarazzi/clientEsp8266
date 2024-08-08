@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 
-
-
 interface Oragiorno{
   readonly oraInizio: string;
   readonly oraFine: string;
-  readonly day:  number;
+  readonly day: number;
 }
-
-
+/*interface key{
+  key: string;
+  value:Oragiorno;
+}*/
 export const regex = new RegExp("^((2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9]))$"); //,(([0-9][0-9][0-9][0-9])-(0[0-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[0-2]))
-export function DayManuale(props: {dayOfWeek: number,array: Array<Oragiorno>}) {
+export function DayManuale(props: {dayOfWeek: number,array: Array<Oragiorno>, mac: string}) {
   const [dataInz,SetdataInz] = useState("");
   const [dataFin,SetdataFin] = useState("");
   const [oraFin,SetoraFin] = useState("");
@@ -37,7 +37,7 @@ export function DayManuale(props: {dayOfWeek: number,array: Array<Oragiorno>}) {
   }
 useEffect(()=>{
   const api = async()=>{
-      const x = {inizio:dataInz, fine:dataFin ,day:props.dayOfWeek }; 
+      const x = {inizio:dataInz, fine:dataFin ,day:props.dayOfWeek, mac:props.mac }; 
       await fetch("/api/RelaySwitch/SetData", { method:"PUT", body: JSON.stringify(x), headers: { 'Content-type': 'application/json; charl set=UTF-8' }});
   }
   if((dataInz !=="" || dataFin!=="") && focus){
@@ -49,18 +49,33 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-  let inizio="";
-  props.array.forEach(pp => {
-    if(pp.day === props.dayOfWeek){if(pp.oraInizio!="00:00:00"){ inizio= pp.oraInizio;}}
-  });
-  let fine="";
-  props.array.forEach(pp => {
-    if(pp.day === props.dayOfWeek){if(pp.oraFine!="00:00:00"){ fine= pp.oraFine;}}
-  });
-  SetoraInz(inizio);
+ /* let inizio="";
+  let fine="";*/
+props.array.forEach((u,_)=>{
+    if(u.day === props.dayOfWeek)
+    {
+      if(u.oraInizio!="00:00:00")
+      {
+        //inizio= u.oraInizio;
+        SetoraInz(u.oraInizio);
+        SetdataInz(u.oraInizio);
+      } 
+
+      if(u.oraFine!="00:00:00")
+      { 
+       // fine= u.oraFine;
+        SetoraFin(u.oraFine);
+        SetdataFin(u.oraFine)
+      }
+  }
+});
+/*console.log("inizio:" +inizio);
+console.log("fine: " +fine);*/
+ /* SetoraInz(inizio);
   SetdataInz(inizio);
   SetoraFin(fine);
-  SetdataFin(fine);
+  SetdataFin(fine);*/
+
 },[props.array,props.dayOfWeek]);
 
 let totIn=0;  

@@ -8,7 +8,18 @@ import { useEffect, useState } from 'react';
 import { CambiaPassword } from './componenti/CambiaPassword';
 import { NuovoAccount } from './componenti/NuovoAccount';
 import { ControlloUtenti } from './componenti/ControlloUtenti';
-import { ProgrammaEsp } from './componenti/ProgrammaEsp';
+//import { ProgrammaEsp } from './componenti/ProgrammaEsp';
+import { Esp } from './componenti/Esp';
+
+interface Lista{
+  readonly nomeEspClient: string;
+  readonly ipEsp : string;
+  readonly abilitazione:boolean;
+}
+interface key{
+  key: string;
+  value:Lista;
+}
 
 interface GetRuolo{
   readonly ruolo: string;
@@ -17,6 +28,7 @@ interface GetRuolo{
 function App() {
   const [token, setToken] = useState(false);
   const [grado, setGrado] = useState("");
+  const [lista, Setlista] = useState([] as key[]);
   useEffect(() => {
     let isActive = true;
     const fetchData = async () => {
@@ -31,17 +43,36 @@ function App() {
     fetchData();
     return ()=>{isActive=false;}  //cleanup when component unmounts
 },[token]);
+
+useEffect(() => {        
+  let isActive = true;
+  const fetchData = async () => {            
+      let data = await fetch("/apiEsp/ListaEsp" , {method: 'GET'});
+      if(!isActive) return;
+      var res = await data.json() as key[];
+      if(!isActive) return;
+      Setlista(res);
+      
+      if(isActive===true) setTimeout(()=>{fetchData();},500);
+  };
+  fetchData();
+  return ()=>{isActive=false;}  
+},[]);
   return (
       <div className="App">
           <HashRouter>
               <Routes>
                   <Route path="/" element={ (token === true ? <Layout setToken={setToken}/> : <Signin  setToken={setToken} />)}>
-                  <Route path="/Automatico" element={(grado==="Admin" || grado==="Basic"?<Automatico />:null)} />
                   <Route path="/CambiaPassword" element={(grado==="Admin" || grado==="Basic"?<CambiaPassword/>:null)} />    
-                  <Route path="/Manuale" element={(grado==="Admin" || grado==="Basic"?<Manuale />:null)} />
+                  <Route path="/ESP" element={(grado==="Admin" || grado==="Basic"?<Esp/>:null)} />
                   <Route path="/NuovoAccount" element={(grado==="Admin" || grado==="root"?<NuovoAccount /> :null)} />
-                  <Route path="/ControlloUtenti" element={(grado==="Admin"?<ControlloUtenti />:null)} />
-                  <Route path="/ListaEsp" element={(grado==="Admin" || grado==="Basic"?<ProgrammaEsp />:null)} />              
+                  <Route path="/ControlloUtenti" element={(grado==="Admin"?<ControlloUtenti />:null)} /> 
+                  {lista.map((u,i)=>
+                  <Route path={"/Automatico"+u.key} element={(grado==="Admin" || grado==="Basic"?<Automatico key={i} mac={u.key}/>:null)} />
+                  )}
+                  {lista.map((u,i)=>
+                  <Route path={"/Manuale"+u.key} element={(grado==="Admin" || grado==="Basic"?<Manuale key={i} mac={u.key} />:null)} />
+                  )}
                 </Route>
               </Routes >
             </HashRouter>    
@@ -49,3 +80,8 @@ function App() {
   );
 }
 export default App;
+// <Route path="/Automatico" element={(grado==="Admin" || grado==="Basic"?<Automatico />:null)} />
+//  <Route path="/Manuale" element={(grado==="Admin" || grado==="Basic"?<Manuale />:null)} />
+// <Route path="/ListaEsp" element={(grado==="Admin" || grado==="Basic"?<ProgrammaEsp />:null)} />        
+/* <Route path="/Automatico" element={(grado==="Admin" || grado==="Basic"?<Automatico/>:null)} />
+  <Route path="/Manuale" element={(grado==="Admin" || grado==="Basic"?<Manuale />:null)} />*/
