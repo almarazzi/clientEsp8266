@@ -4,7 +4,7 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [invalid, setInvalid] = useState(false);
-
+  
   useEffect(() => {
     const Autenticazione = async () => {
       let data = await fetch("/Login/Autenticazione", { method: "GET", headers: {'Content-type': 'application/json; charl set=UTF-8'}});
@@ -28,6 +28,7 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
      // setLoading(false);
     }else
     {
+      props.setToken(false);
       setInvalid(true);
     }
   }, [username, password, invalid,props.setToken]);
@@ -39,8 +40,7 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
   }
 
   return (
-    <div className="row container">
-      <form className="aa">
+      <div className="aa">
         <div className="titolo fw-bolder" >centralina di irrigazione </div>
         <div className=" form-floating  md-3 UserNametex is-invalid " >
           <input type="text" value={username} className={" form-control is-" + (invalid === true ? "invalid" : "")}  placeholder=" " id="inputNomeUtente" onChange={(a) => { setUsername(a.target.value); }} />
@@ -55,13 +55,8 @@ export function Signin(props: { setToken: (t: boolean) => void }) {
         <button type="button" className=" btn btn-success" onClick={signIn}>Login</button>
         
         
-      </form> 
-
-    </div>
+      </div> 
   );
 
 }
-/*<button class="btn btn-primary" type="button" disabled>
-  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-  <span class="visually-hidden" role="status">Loading...</span>
-</button>*/
+

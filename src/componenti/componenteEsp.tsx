@@ -103,19 +103,26 @@ export function ComponenteEsp(props: {mac: string,ip: string,abilitazioe:boolean
                     onChange={(e)=>{SetnomeEsp(e.target.value);
                     Setmac(props.mac);
                 }}/>
-                <div className="form-check">
-                <input className="form-check-input input_check" type="checkbox" checked={props.abilitazioe}  onChange={(e)=>{setAbilitazione(e.target.checked); Setmac(props.mac); }} id="abiliatazione" required />
-                <label className="pppp" form="abiliatazione"> Abilitazione Esp</label>
+                <div className="form-check input_check">
+                <input className="form-check-input" type="checkbox" checked={props.abilitazioe}  onChange={(e)=>{setAbilitazione(e.target.checked); Setmac(props.mac); }} id="abiliatazione" required />
+                <label form="abiliatazione"> Abilitazione {props.nome}</label>
                 </div>
                 
-                <Link to={"/Manuale" +props.mac} className="bottoneAuto"><button type="button" className="btn btn-outline-primary ">Automatico</button></Link>
-                <Link to={"/Automatico"+props.mac}  className="bottoneManu"><button type="button" className="btn btn-outline-primary ">Manuale</button></Link>
-                
-                <label className="ip">IP:{props.ip}</label>
-                <label className="mac">MAC:{props.mac}</label>
+                <div className="ip">IP:{props.ip}</div>
+                <div className="mac">MAC:{props.mac}</div>
+                <div className="componenteAutoManu">
+                <input className="form-check-input casellaAuto" type="checkbox" checked={A}  onChange={p1}   id="invalidCheck1" required />
+
+                <Link to={"/Manuale/" +props.mac} className="bottoneAuto dropdown-item">
+                    <button type="button" className="btn btn-outline-primary ">Automatico</button>
+                </Link>
+
+                <Link to={"/Automatico/"+props.mac}  className="bottoneManu dropdown-item">
+                    <button type="button" className="btn btn-outline-primary ">Manuale</button>
+                </Link>
 
                 <input className="form-check-input casellaManu" type="checkbox"  checked={M} onChange={y}  id="invalidCheck" required />
-                <input className="form-check-input casellaAuto" type="checkbox" checked={A}  onChange={p1}   id="invalidCheck1" required />
+                </div>
             </div>
             
     );

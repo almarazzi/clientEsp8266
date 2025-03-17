@@ -46,8 +46,7 @@ export function CambiaPassword() {
     }
 
     return (
-        <div className="row container">
-            <form className="CP">
+            <div className="CP">
                 <div className="titolo1 fw-bolder"> CambiaPassword </div>
                 <div className=" form-floating is-invalid md-3 UserNamet">
                     <input type="text" value={Username} className={"form-control"} placeholder=" " id="inputEmail3" onChange={(a) => { setUsername(a.target.value); }} />
@@ -69,8 +68,7 @@ export function CambiaPassword() {
                     <label form="Password">Conferma Password</label>
                 </div>
                 <button type="button" className={"Bouttont btn btn-" + (statobottone === true ? "success" : "primary")} onClick={Cambio}>Cambio</button>
-            </form>
-        </div>
+            </div>
 
     );
 }

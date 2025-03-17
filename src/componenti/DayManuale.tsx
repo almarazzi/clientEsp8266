@@ -6,10 +6,7 @@ interface Oragiorno{
   readonly oraFine: string;
   readonly day: number;
 }
-/*interface key{
-  key: string;
-  value:Oragiorno;
-}*/
+
 export const regex = new RegExp("^((2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9]))$"); //,(([0-9][0-9][0-9][0-9])-(0[0-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[0-2]))
 export function DayManuale(props: {dayOfWeek: number,array: Array<Oragiorno>, mac: string}) {
   const [dataInz,SetdataInz] = useState("");
@@ -22,7 +19,7 @@ export function DayManuale(props: {dayOfWeek: number,array: Array<Oragiorno>, ma
   const [tempoCon,SeTtempoCon] = useState(0);
   const [focus, setFocus] = useState(false);
   const days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-
+  //let d = new Date();
   const dataInizio = (t:string) =>{
     if(regex.exec(t))
     {
@@ -49,8 +46,7 @@ useEffect(()=>{
 
 
 useEffect(()=>{
- /* let inizio="";
-  let fine="";*/
+
 props.array.forEach((u,_)=>{
     if(u.day === props.dayOfWeek)
     {
@@ -67,14 +63,8 @@ props.array.forEach((u,_)=>{
         SetoraFin(u.oraFine);
         SetdataFin(u.oraFine)
       }
-  }
-});
-/*console.log("inizio:" +inizio);
-console.log("fine: " +fine);*/
- /* SetoraInz(inizio);
-  SetdataInz(inizio);
-  SetoraFin(fine);
-  SetdataFin(fine);*/
+    }
+  });
 
 },[props.array,props.dayOfWeek]);
 
@@ -195,8 +185,8 @@ useEffect(()=>{
           <div className="progress barra1">
             <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style={{width: tempoCon + '%' }}  aria-valuemin={0}aria-valuemax={100}></div>
           </div>
-          <div><hr /></div>
         </div>     
     );
   
 }
+//          {d.getDay()===props.dayOfWeek ? <MeteoManu/> : null}

@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState,  } from "react";
 import { DayManuale } from "./DayManuale";
 
+
 interface Oragiorno{
     readonly oraInizio: string;
     readonly oraFine: string;
@@ -14,7 +15,7 @@ export function Manuale(props:{mac:string}){
 const [r, setr] = useState([] as Oragiorno[]);
 //const [pp, setpp] = useState("");
 
-const a = new Date();
+//const a = new Date();
 useEffect(() => {
     let isactive= true;
     const fetchData1 = async () => {
@@ -40,12 +41,12 @@ useEffect(() => {
         isactive=false;
     };
 },[]);
-
     return <Fragment>
         {
         [...Array(7)].map((_,i) => 
-            <div className={""+(a.getDay()!==i ?"opacity-25":null)} >
+            <div>
             <DayManuale key={i}  dayOfWeek={i}  array={r} mac={props.mac} />
+            <hr/>
             </div>
             )}
     </Fragment>    

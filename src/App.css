@@ -4,20 +4,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .Buttone1 {
-  position: relative;
-  left: -24px;
-  top: 20px;
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: auto;
 
 }
 
 .Buttone2 {
-  position: relative;
-  left: 40px;
-  bottom: 18px;
-
+  margin-top: 5px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: 5px;
 }
 
 .App_titolo {
@@ -70,8 +72,7 @@
 }
 
 .iii {
-  position: static;
-  width: 100%;
+  width: auto;
 }
 
 .UserNametex {
@@ -106,30 +107,25 @@
 
 .aa {
   font-family: sans-serif;
-  display: grid;
-  align-items: center;
-  justify-content: center;
+  display: flex;
   flex-direction: column;
-  gap: 1px;
-  height: 400px;
-
+  gap: 20px;
+  height: 360px;
   background-color: white;
   padding: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position: relative;
-  margin: 0 auto;
-  width: auto;
-  top: 50px;
-  
-
-
+  margin-top: 50px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  width: fit-content;
 
 }
 
 .titolo {
   font-size: 25px;
-  margin-bottom: 20px;
+  margin: auto;
 }
 
 .wwww {
@@ -148,10 +144,9 @@
 .CP {
   position: relative;
   font-family: sans-serif;
-  display: inline-grid;
+  display: grid;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 1px;
   height: 500px;
 
@@ -159,10 +154,12 @@
   padding: 3rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position: relative;
-  margin: 0 auto;
-  width: auto;
-  top: 50px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-bottom: 0px;
+  margin-right: auto;
+  width: fit-content;
+
 }
 
 .titolo1 {
@@ -199,23 +196,24 @@
   background-color: #bbb;
 }
 hr{
-  width: 100%;
-  position: relative;
-  top: 30px;
-  display: flex;
-  align-items: center;
   background-color: black;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 10px;
-  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   border-width: 2px;
   border-color: black;
+  height: 5px;
+  width: 290px;
+  opacity: 100;
 }
-hr:not([size]){
-  height: 4px;
+h2
+{
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 .Automatico{
   display: flex;
   width: 99%;
@@ -226,7 +224,11 @@ hr:not([size]){
 }
 
 .aa1{
-  position: relative;
+  margin-top: 10px;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-left: auto;
+  width: fit-content;
 }
 .tabella{
 border: 2px solid;
@@ -242,30 +244,104 @@ text-align: -webkit-center;
   width: 200px;
 }
 .prova{
-  position: relative;
-  top: 20px;
-  }
-  .isOnline {
+  display: grid;
+  justify-items: center;
+  margin-top: 20px;
+
+}
+.isOnline {
     width: 20px;
     height: 20px;
     background-color: green;
     border: 1px solid white;
     border-radius: 100%;
-  }
-  .isOffline {
+}
+.isOffline {
     width: 20px;
     height: 20px;
     background-color: red;
     border: 1px solid white;
     text-align: center;
     border-radius: 100%;
-  }
-  .input_ESP
+}
+.input_ESP
+{
+    margin: 5px auto 5px auto;
+}
+.ccccc
+{
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 200px;
+
+  background-color: white;
+  padding-top: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+}
+.input_check
+{
+  margin: auto auto 5px 0px;
+  display: block;
+}
+.pppp
+{
+  position: relative;
+  display: flex;
+}
+  .ip
   {
-    position: relative;
-    top: -60px;
+    margin: auto  auto 5px 0px;
   }
-  .ccccc
+  .mac
+  {
+    margin: auto auto 5px 0px;
+  }
+  .casellaAuto
+  {
+    margin: auto;
+  }
+  .casellaManu
+  {
+    margin: auto;
+  }
+  .bottoneManu
+  {
+    width: 40%;
+    margin: auto 5px;
+  }
+  .bottoneAuto
+  {
+    width: 48%;
+    margin: auto 5px;
+  }
+  .icona{
+    position: relative;
+    top: -50px;
+  }
+  .temperatura{
+    position: relative;
+    top: -45px;
+  }
+  .Precipitazioni{
+    position: relative;
+    top: -35px;
+  }
+  .componenteAutoManu
+  {
+    display: flex;
+  }
+  .ccccc1
   {
   font-family: sans-serif;
   display: grid;
@@ -273,67 +349,79 @@ text-align: -webkit-center;
   justify-content: center;
   flex-direction: column;
   gap: 1px;
-  height: 200px;
+  height: 100px;
 
-  background-color: white;
+  background-color: skyblue;
   padding: 4rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: relative;
-  margin-bottom: 10px;
-  margin-top: 0px;
-  margin-left: 1px;
-  margin-right: 1px;
+  margin-bottom: 4px;
+  margin-top: 30px;
+  margin-left: 4px;
+  margin-right: 4px;
   top: 10px;
-  right: 400px;
+  right: auto;
   }
-  .input_check
+  .ccccc2
   {
-    position: relative;
-    top: -50px;
+  height: 100px;
+  background-color: skyblue;
+  padding: 4rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
   }
-  .pppp
-  {
-    position: relative;
-    top: -49px;
-    right: 40px;
-  }
-  .ip
-  {
-    position: relative;
-    top: -120px;
-    right: 46px;
-  }
-  .mac
-  {
-    position: relative;
-    top: -115px;
-    right: 18px;
-  }
-  .casellaAuto
-  {
-    position: relative;
-    right: 55px;
-    top: -120px;
-  }
-  .casellaManu
-  {
-    position: relative;
-    position: relative;
-    top: -100px;
-    left: 260px;
-  }
-  .bottoneManu
-  {
-    position: relative;
-    left: 157px;
-    width: 100px;
-    top: -14px;
-  }
-  .bottoneAuto
-  {
-    position: relative;
-    right: 30px;
-    width: 100px;
-    top: 25px;
-  }
+.Menu
+{
+  display: grid;
+  justify-items: center;
+}
+.Manuale1{
+  display: flex;
+}
+
+
+.contenitore{
+  width: 100vw;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: column;
+;
+}
+.finestra {
+  position: relative;
+  width: 250px;
+  height: 100%;
+  background-color: #343a40;
+  color: white;
+  padding-top: 20px;
+  display: flex;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px 0 black, 0 6px 20px black;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: center;
+}
+.finestra button {
+  color: white;
+  text-decoration: none;
+  padding: 1px 20px;
+  
+}
+
+.titolo{
+  margin: 1px;
+}
+

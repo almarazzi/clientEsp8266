@@ -29,8 +29,7 @@ export function NuovoAccount() {
     
 
     return (
-        <div className="row container">
-            <form className="aa">
+            <div className="CP">
                 <div className="titolo fw-bolder" >Aggiungere un Account</div>
                 <div className=" form-floating  md-3 UserNametex has-validation ">
                     <input type="text" value={username} className={"form-control is-"+ (istrue === true ? "valid" : "")} placeholder=" " onChange={(a) => { setUsername(a.target.value); }} />
@@ -48,9 +47,7 @@ export function NuovoAccount() {
                     </div>
                 </div>
                 <button type="button"  className={"BouttonSignin btn btn-primary"} onClick={aggiunta}>Aggiungi l'account</button>
-            </form>
-        </div>
-
+            </div>
     );
 }
 

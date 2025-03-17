@@ -8,8 +8,9 @@ import { useEffect, useState } from 'react';
 import { CambiaPassword } from './componenti/CambiaPassword';
 import { NuovoAccount } from './componenti/NuovoAccount';
 import { ControlloUtenti } from './componenti/ControlloUtenti';
-//import { ProgrammaEsp } from './componenti/ProgrammaEsp';
 import { Esp } from './componenti/Esp';
+import {Babylon} from './componenti/Babylon';
+
 
 interface Lista{
   readonly nomeEspClient: string;
@@ -53,26 +54,33 @@ useEffect(() => {
       if(!isActive) return;
       Setlista(res);
       
-      if(isActive===true) setTimeout(()=>{fetchData();},500);
+      if(isActive===true) 
+      {
+        setTimeout(()=>{
+          fetchData();
+        },500);
+      }
   };
   fetchData();
   return ()=>{isActive=false;}  
 },[]);
   return (
-      <div className="App">
+      <div>
           <HashRouter>
               <Routes>
+                <Route path="/prova" element={<Babylon  mac={lista}/>} />
                   <Route path="/" element={ (token === true ? <Layout setToken={setToken}/> : <Signin  setToken={setToken} />)}>
-                  <Route path="/CambiaPassword" element={(grado==="Admin" || grado==="Basic"?<CambiaPassword/>:null)} />    
+                  <Route path="/CambiaPassword"  element={(grado==="Admin" || grado==="Basic"?<CambiaPassword/>:null)} />    
                   <Route path="/ESP" element={(grado==="Admin" || grado==="Basic"?<Esp/>:null)} />
                   <Route path="/NuovoAccount" element={(grado==="Admin" || grado==="root"?<NuovoAccount /> :null)} />
                   <Route path="/ControlloUtenti" element={(grado==="Admin"?<ControlloUtenti />:null)} /> 
                   {lista.map((u,i)=>
-                  <Route path={"/Automatico"+u.key} element={(grado==="Admin" || grado==="Basic"?<Automatico key={i} mac={u.key}/>:null)} />
+                  <Route path={"/Automatico/"+u.key} element={(grado==="Admin" || grado==="Basic"?<Automatico key={i} mac={u.key}/>:null)} />
                   )}
                   {lista.map((u,i)=>
-                  <Route path={"/Manuale"+u.key} element={(grado==="Admin" || grado==="Basic"?<Manuale key={i} mac={u.key} />:null)} />
+                  <Route path={"/Manuale/"+u.key} element={(grado==="Admin" || grado==="Basic"?<Manuale key={i} mac={u.key} />:null)} />
                   )}
+
                 </Route>
               </Routes >
             </HashRouter>    
@@ -80,8 +88,3 @@ useEffect(() => {
   );
 }
 export default App;
-// <Route path="/Automatico" element={(grado==="Admin" || grado==="Basic"?<Automatico />:null)} />
-//  <Route path="/Manuale" element={(grado==="Admin" || grado==="Basic"?<Manuale />:null)} />
-// <Route path="/ListaEsp" element={(grado==="Admin" || grado==="Basic"?<ProgrammaEsp />:null)} />        
-/* <Route path="/Automatico" element={(grado==="Admin" || grado==="Basic"?<Automatico/>:null)} />
-  <Route path="/Manuale" element={(grado==="Admin" || grado==="Basic"?<Manuale />:null)} />*/

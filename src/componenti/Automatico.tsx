@@ -1,4 +1,5 @@
 import { useEffect, useState, Fragment } from "react";
+
 interface Tutto {
   state : boolean,
   macricever: string
@@ -34,6 +35,7 @@ export function Automatico (props:{mac:string}){
 
     return(
       <Fragment>
+        <div className="Manuale1">
             <button type="button" className={ "Buttone1  btn btn-" + (state === true ?  "primary" : "secondary") }  onClick={async ()=>{ 
               let data = await fetch("/api/RelaySwitch/SetState", {  method: "PUT", body: JSON.stringify({state:true, macricever:props.mac }) ,headers: { 'Content-type': 'application/json; charl set=UTF-8' }});
               var res = await data.json() as Tutto[];
@@ -51,6 +53,7 @@ export function Automatico (props:{mac:string}){
                 stateOn(y.state);
                 })
             }}> OFF</button>
+        </div>
         </Fragment>
     );
 }   
