@@ -410,8 +410,7 @@ text-align: -webkit-center;
   overflow-y: auto;
   box-shadow: 0 4px 8px 0 black, 0 6px 20px black;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-content: space-around;
+  flex-wrap: nowrap;
   align-items: center;
 }
 .finestra button {
@@ -423,5 +422,18 @@ text-align: -webkit-center;
 
 .titolo{
   margin: 1px;
+}
+
+.finestra hr{
+  margin: 5px;
+  width: 200px;
+  height: 3px;
+}
+.finestra label{
+  position: relative;
+  left: 5px;
+}
+.manu{
+  margin: 5px;
 }
 
