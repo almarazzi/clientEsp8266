@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import * as BABYLON from "@babylonjs/core";
+import "@babylonjs/loaders";
+import * as BABYLON from "@babylonjs/core" ;
 import Automatico from "./Automatico";
 import { Manuale } from "./Manuale";
 interface Lista {
@@ -17,7 +18,7 @@ interface Tutto {
   macricever: string
 }
 
-export function Babylon(props: { mac: Array<key> }) {
+ export  function Babylon(props: { mac: Array<key> }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const scenaRef = useRef<BABYLON.Scene>();
@@ -30,7 +31,7 @@ export function Babylon(props: { mac: Array<key> }) {
   const [Auto, setAtuo] = useState(false);
   const [M, setM] = useState(false);
 
-  useEffect(() => {
+  useEffect( () => {
     const contenitore = containerRef.current;
     const canvas = canvasRef.current;
     const engine = new BABYLON.Engine(canvas, true);
@@ -40,10 +41,19 @@ export function Babylon(props: { mac: Array<key> }) {
     camera.attachControl(canvas, true);
     new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
     BABYLON.MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
+    const STL = async()=>{
+      const casa = await BABYLON.LoadAssetContainerAsync("/casa.stl", scene);
+      var g = new BABYLON.StandardMaterial("g",scene);
+      g.diffuseColor = new BABYLON.Color3(0.61,0.61,0.61);
+      casa.meshes.map((u,_)=>{
+        u.material = g;
+      })
+      casa.addToScene();
+    }
+    STL();
     engine.runRenderLoop(() => {
       scene.render();
     });
-
     const dimenzioni = () => {
       if (canvas && contenitore) {
         canvas.width = contenitore.clientWidth;

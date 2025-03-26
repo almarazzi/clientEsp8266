@@ -426,7 +426,7 @@ text-align: -webkit-center;
 
 .finestra hr{
   margin: 5px;
-  width: 200px;
+  width: auto;
   height: 3px;
 }
 .finestra label{
@@ -436,4 +436,5 @@ text-align: -webkit-center;
 .manu{
   margin: 5px;
 }
+
 

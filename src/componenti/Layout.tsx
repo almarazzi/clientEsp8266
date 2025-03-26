@@ -85,6 +85,7 @@ useEffect(() => {
                                 <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "ESP":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "ESP":null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ?"CambiaPassword":null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "CambiaPassword":null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin"||grado==="root" ? "NuovoAccount": null)} className={""+(grado==="Admin"||grado==="root" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="root" ? "NuovoAccount": null)}</Link></li>
+                                <li><Link to={"/"+(grado==="Admin"||grado==="Basic" ? "Babylon": null)} className={""+(grado==="Admin"||grado==="Basic" ? "dropdown-item": null)}>{(grado==="Admin"||grado==="Basic" ? "Mappa3D": null)}</Link></li>
                                 <li><Link to={"/"+(grado==="Admin" ? "ControlloUtenti": null)} className={""+(grado==="Admin" ? "dropdown-item": null)}>{(grado==="Admin" ? "ControlloUtenti": null)}</Link></li>
                                 </ul>
                             </li>
