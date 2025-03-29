@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import "@babylonjs/loaders";
-//import * as BABYLON from "@babylonjs/core";
-import { Engine,Scene,ArcRotateCamera,Vector3,Color3,Mesh , HemisphericLight, LoadAssetContainerAsync , StandardMaterial, CreateCylinder} from "@babylonjs/core";
-//import {Inspector} from  '@babylonjs/inspector';  inspector indeciso se lasciarlo o no 
+import "@babylonjs/loaders/stl";
+import { Engine } from "@babylonjs/core/Engines/engine";
+import { Scene } from "@babylonjs/core/scene";
+import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera";
+import { Vector3, Color3 } from "@babylonjs/core/Maths/math";
+import { Mesh } from "@babylonjs/core/Meshes/mesh";
+import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
+import { LoadAssetContainerAsync } from "@babylonjs/core/Loading";
+import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial";
+import { CreateCylinder } from "@babylonjs/core/Meshes/Builders/cylinderBuilder";
+
+//import {Inspector} from  '@babylonjs/inspector';  //inspector indeciso se lasciarlo o no 
 import Automatico from "./Automatico";
 import { Manuale } from "./Manuale";
 interface Lista {
@@ -20,7 +28,7 @@ interface Tutto {
   macricever: string
 }
 
- export  function Babylon(props: { mac: Array<key> }) {
+export function Babylon(props: { mac: Array<key> }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const scenaRef = useRef<Scene>();
@@ -32,21 +40,21 @@ interface Tutto {
   const [A, setA] = useState(false);
   const [Auto, setAtuo] = useState(false);
   const [M, setM] = useState(false);
-  
-  useEffect( () => {
+
+  useEffect(() => {
     const contenitore = containerRef.current;
     const canvas = canvasRef.current;
     const engine = new Engine(canvas, true);
     const scene = new Scene(engine);
     scenaRef.current = scene;
-    const camera = new ArcRotateCamera("camera", 4.79, 1.27, 29.9, new Vector3(11.69,1.82,-1.79), scene);
+    const camera = new ArcRotateCamera("camera", 4.79, 1.27, 29.9, new Vector3(11.69, 1.82, -1.79), scene);
     camera.attachControl(canvas, true);
     new HemisphericLight("light", new Vector3(2, 1, 0), scene);
-    const STL = async()=>{
+    const STL = async () => {
       const casa = await LoadAssetContainerAsync("/casa.stl", scene);
-      var g = new StandardMaterial("g",scene);
-      g.diffuseColor = new Color3(0.61,0.61,0.61);
-      casa.meshes.map((u,_)=>{
+      var g = new StandardMaterial("g", scene);
+      g.diffuseColor = new Color3(0.61, 0.61, 0.61);
+      casa.meshes.map((u, _) => {
         u.material = g;
       })
       casa.addToScene();
@@ -55,12 +63,13 @@ interface Tutto {
     engine.runRenderLoop(() => {
       scene.render();
     });
-   /* Inspector.Show(scene, {  inspector indeciso se lasciarlo o no 
+    /*Inspector.Show(scene, {  //inspector indeciso se lasciarlo o no 
       embedMode:true,
       overlay:true,
       showInspector:true,
       showExplorer:true
     });*/
+
     const dimenzioni = () => {
       if (canvas && contenitore) {
         canvas.width = contenitore.clientWidth;
@@ -82,7 +91,7 @@ interface Tutto {
   useEffect(() => {
     if (oggetto.length !== props.mac.length) {
       setoggetto(props.mac.map((u, i) => {
-        return irrigazione({ name: u.key, x: 17.5 ,z:i});
+        return irrigazione({ name: u.key, x: 17.5, z: i });
       }));
     }
     else
@@ -135,7 +144,7 @@ interface Tutto {
 
 
 
-  function irrigazione(props: { name: string, x: number, z:number }) {
+  function irrigazione(props: { name: string, x: number, z: number }) {
     var irrigazione = CreateCylinder(props.name, { height: 1, diameter: 0.2 });
     var r = new StandardMaterial("");
     r.diffuseColor = new Color3(0.45, 0.56, 0.53);
@@ -186,7 +195,7 @@ interface Tutto {
     if (mac !== "") {
       api();
     }
-  }, [A,mac]);
+  }, [A, mac]);
 
   useEffect(() => {
 
@@ -195,9 +204,9 @@ interface Tutto {
         setA(u.value.abilitazione);
 
     })
-  }, [props.mac,mac]);
+  }, [props.mac, mac]);
 
-//manu
+  //manu
   const m1 = useCallback(async () => {
     if (mac !== "") {
       const inv = { stateProgrammManu: !M, macricever: mac };
@@ -227,7 +236,7 @@ interface Tutto {
       isactive = false;
     };
   }, [mac]);
-//auto
+  //auto
 
   const a1 = useCallback(async () => {
     if (mac !== "") {
