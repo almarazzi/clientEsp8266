@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "@babylonjs/loaders";
-import * as BABYLON from "@babylonjs/core" ;
+//import * as BABYLON from "@babylonjs/core";
+import { Engine,Scene,ArcRotateCamera,Vector3,Color3,Mesh , HemisphericLight, LoadAssetContainerAsync , StandardMaterial, CreateCylinder} from "@babylonjs/core";
+//import {Inspector} from  '@babylonjs/inspector';  inspector indeciso se lasciarlo o no 
 import Automatico from "./Automatico";
 import { Manuale } from "./Manuale";
 interface Lista {
@@ -21,30 +23,29 @@ interface Tutto {
  export  function Babylon(props: { mac: Array<key> }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const scenaRef = useRef<BABYLON.Scene>();
+  const scenaRef = useRef<Scene>();
   const [visibilita, setVisibilita] = useState(false);
   const [key, setkey] = useState(0);
-  const [oggetto, setoggetto] = useState<BABYLON.Mesh[]>([] as BABYLON.Mesh[]);
+  const [oggetto, setoggetto] = useState<Mesh[]>([] as Mesh[]);
   const [mac, setMac] = useState("");
   const [RelayActive, setRelayActive] = useState([] as Tutto[]);
   const [A, setA] = useState(false);
   const [Auto, setAtuo] = useState(false);
   const [M, setM] = useState(false);
-
+  
   useEffect( () => {
     const contenitore = containerRef.current;
     const canvas = canvasRef.current;
-    const engine = new BABYLON.Engine(canvas, true);
-    const scene = new BABYLON.Scene(engine);
+    const engine = new Engine(canvas, true);
+    const scene = new Scene(engine);
     scenaRef.current = scene;
-    const camera = new BABYLON.ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 5, BABYLON.Vector3.Zero(), scene);
+    const camera = new ArcRotateCamera("camera", 4.79, 1.27, 29.9, new Vector3(11.69,1.82,-1.79), scene);
     camera.attachControl(canvas, true);
-    new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
-    BABYLON.MeshBuilder.CreateGround("ground", { width: 6, height: 6 }, scene);
+    new HemisphericLight("light", new Vector3(2, 1, 0), scene);
     const STL = async()=>{
-      const casa = await BABYLON.LoadAssetContainerAsync("/casa.stl", scene);
-      var g = new BABYLON.StandardMaterial("g",scene);
-      g.diffuseColor = new BABYLON.Color3(0.61,0.61,0.61);
+      const casa = await LoadAssetContainerAsync("/casa.stl", scene);
+      var g = new StandardMaterial("g",scene);
+      g.diffuseColor = new Color3(0.61,0.61,0.61);
       casa.meshes.map((u,_)=>{
         u.material = g;
       })
@@ -54,6 +55,12 @@ interface Tutto {
     engine.runRenderLoop(() => {
       scene.render();
     });
+   /* Inspector.Show(scene, {  inspector indeciso se lasciarlo o no 
+      embedMode:true,
+      overlay:true,
+      showInspector:true,
+      showExplorer:true
+    });*/
     const dimenzioni = () => {
       if (canvas && contenitore) {
         canvas.width = contenitore.clientWidth;
@@ -75,7 +82,7 @@ interface Tutto {
   useEffect(() => {
     if (oggetto.length !== props.mac.length) {
       setoggetto(props.mac.map((u, i) => {
-        return irrigazione({ name: u.key, x: i });
+        return irrigazione({ name: u.key, x: 17.5 ,z:i});
       }));
     }
     else
@@ -98,10 +105,10 @@ interface Tutto {
   useEffect(() => {
     RelayActive.map((h, _) => {
       const ogg = oggetto.find((u) => u.name === h.macricever);
-      if (h.state === true && ogg?.position.y === -0.45) {
+      if (h.state === true && ogg?.position.y === 2.1) {
         animazioneSu({ oggetto: ogg, tinziale: performance.now() });
       }
-      else if (h.state === false && ogg?.position.y === 0.4) {
+      else if (h.state === false && ogg?.position.y === 2.9) {
         animazioneGiu({ oggetto: ogg, tinziale: performance.now() });
       }
     });
@@ -128,36 +135,37 @@ interface Tutto {
 
 
 
-  function irrigazione(props: { name: string, x: number }) {
-    var irrigazione = BABYLON.CreateCylinder(props.name, { height: 1, diameter: 0.2 });
-    var r = new BABYLON.StandardMaterial("");
-    r.diffuseColor = new BABYLON.Color3(0.45, 0.56, 0.53);
+  function irrigazione(props: { name: string, x: number, z:number }) {
+    var irrigazione = CreateCylinder(props.name, { height: 1, diameter: 0.2 });
+    var r = new StandardMaterial("");
+    r.diffuseColor = new Color3(0.45, 0.56, 0.53);
     irrigazione.material = r;
     irrigazione.position.x = props.x;
-    irrigazione.position.y = -0.45;
+    irrigazione.position.y = 2.1;
+    irrigazione.position.z = props.z;
     return irrigazione;
   };
 
-  function animazioneSu(props: { oggetto: BABYLON.Mesh; tinziale: number }) {
+  function animazioneSu(props: { oggetto: Mesh; tinziale: number }) {
     props.oggetto.onBeforeRenderObservable.add(() => {
       const t = (performance.now() - props.tinziale) / 1000;
       if (t < 1) {
-        props.oggetto.position.y = -0.45 + Math.sin(t * (Math.PI / 2)) * (0.4 + 0.45);
+        props.oggetto.position.y = 2.1 + Math.sin(t * (Math.PI / 2)) * (2.9 - 2.1);
       }
       else {
-        props.oggetto.position.y = 0.4;
+        props.oggetto.position.y = 2.9;
       }
     });
   }
 
-  function animazioneGiu(props: { oggetto: BABYLON.Mesh; tinziale: number }) {
+  function animazioneGiu(props: { oggetto: Mesh; tinziale: number }) {
     props.oggetto.onBeforeRenderObservable.add(() => {
       const t = (performance.now() - props.tinziale) / 1000;
       if (t < 1) {
-        props.oggetto.position.y = 0.4 - Math.sin(t * (Math.PI / 2)) * (0.4 + 0.45);
+        props.oggetto.position.y = 2.9 - Math.sin(t * (Math.PI / 2)) * (2.9 - 2.1);
       }
       else {
-        props.oggetto.position.y = -0.45;
+        props.oggetto.position.y = 2.1;
       }
     });
   }

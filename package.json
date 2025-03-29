@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@babylonjs/core": "^7.50.0",
+    "@babylonjs/core": "^8.0.1",
+    "@babylonjs/inspector": "^8.0.1",
     "@babylonjs/loaders": "^7.54.1",
     "bootstrap": "^5.3.3",
     "moment": "^2.30.1",
