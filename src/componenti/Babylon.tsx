@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "@babylonjs/loaders/stl";
+import "@babylonjs/core/Culling/ray";
 import { Engine } from "@babylonjs/core/Engines/engine";
 import { Scene } from "@babylonjs/core/scene";
 import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera";
